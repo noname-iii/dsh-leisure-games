@@ -1,0 +1,284 @@
+.root {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.gameArea {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.canvas {
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: pixelated;
+  border-radius: 6px;
+}
+
+.stageOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(10, 12, 20, 0.72);
+  text-align: center;
+}
+
+.stageTitle {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.stageSub {
+  font-size: 13.5px;
+  opacity: 0.8;
+}
+
+.stageButton {
+  padding: 9px 22px;
+  border-radius: 9px;
+  border: 1px solid rgba(124, 90, 226, 0.6);
+  background: rgba(124, 90, 226, 0.25);
+  color: #d8ccff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13.5px;
+}
+
+.panel {
+  width: 230px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #7c5ae2, #4c78f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 11.5px;
+  opacity: 0.65;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.row b {
+  font-variant-numeric: tabular-nums;
+}
+
+.hints {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button,
+.musicButton {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.actions button:hover,
+.musicButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.musicButton {
+  flex: none;
+}
+
+.modalOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 10, 18, 0.75);
+}
+
+.modal {
+  width: min(520px, 92vw);
+  max-height: 84vh;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #171a28;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.field > label {
+  opacity: 0.85;
+}
+
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filename {
+  flex: 1;
+  font-size: 11.5px;
+  opacity: 0.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileRow button,
+.pieceToggle button,
+.modalActions button {
+  padding: 6px 12px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+.pieceToggle button[data-active='true'] {
+  border-color: rgba(76, 120, 245, 0.7);
+  background: rgba(76, 120, 245, 0.2);
+}
+
+.slider,
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.slider input[type='range'] {
+  flex: 1;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.grid2 input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.rangeValue {
+  font-size: 11.5px;
+  opacity: 0.7;
+}
+
+.checkbox {
+  flex-direction: row;
+  gap: 16px;
+}
+
+.pieceToggle {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modalActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}

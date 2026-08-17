@@ -1,0 +1,152 @@
+.stack {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(360px, calc(100vw - 24px));
+  pointer-events: auto;
+}
+
+.card {
+  background: var(--dsw-panel-bg, #1b1e2b);
+  border: 1px solid var(--dsw-alias-border-l3, rgba(255, 255, 255, 0.14));
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  font: inherit;
+}
+
+.card[data-kind='approval'] {
+  border-color: rgba(240, 178, 66, 0.55);
+}
+
+.card[data-kind='completion'] {
+  border-color: rgba(76, 197, 122, 0.55);
+}
+
+.cardBody {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px 12px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.cardTitle {
+  font-weight: 650;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.card[data-kind='approval'] .cardTitle {
+  color: #f0b242;
+}
+
+.card[data-kind='completion'] .cardTitle {
+  color: #4ec57a;
+}
+
+.project {
+  font-size: 12.5px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail {
+  margin-bottom: 6px;
+}
+
+.detailLabel {
+  font-size: 11px;
+  opacity: 0.65;
+  margin-bottom: 2px;
+}
+
+.detailText {
+  font-size: 12px;
+  line-height: 1.45;
+  max-height: 84px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.commandBlock {
+  margin-bottom: 4px;
+}
+
+.command {
+  display: block;
+  font-size: 11.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 6px 8px;
+  max-height: 72px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.navHint {
+  font-size: 11px;
+  opacity: 0.55;
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.allow,
+.deny {
+  flex: 1;
+  border-radius: 7px;
+  padding: 7px 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.allow {
+  background: #2c7d4f;
+  color: #eafff2;
+}
+
+.allow:hover {
+  background: #35935d;
+}
+
+.deny {
+  background: rgba(255, 255, 255, 0.08);
+  color: #eee;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.deny:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.allow:disabled,
+.deny:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

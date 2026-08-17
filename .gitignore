@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+plugin/lib/
+dist/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp

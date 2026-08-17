@@ -1,0 +1,259 @@
+.root {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 14px;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  flex: 1;
+  margin: 0;
+  font-size: 18px;
+}
+
+.backButton,
+.exitButton {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.exitButton {
+  border-color: rgba(226, 95, 95, 0.4);
+  color: #f2b8b8;
+}
+
+.exitButton:hover {
+  background: rgba(226, 95, 95, 0.14);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.section h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.toggle {
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  font: inherit;
+}
+
+.toggle[data-on='true'] {
+  border-color: rgba(76, 197, 122, 0.55);
+  background: rgba(76, 197, 122, 0.14);
+  color: #7ee0a0;
+}
+
+.hint {
+  font-size: 11.5px;
+  opacity: 0.6;
+  margin: 8px 0 0;
+}
+
+.colorRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.colorRow input[type='color'] {
+  width: 44px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 7px;
+  background: none;
+  cursor: pointer;
+}
+
+.colorLabel {
+  font-size: 12.5px;
+  opacity: 0.85;
+}
+
+.colorValue {
+  font-size: 11.5px;
+  opacity: 0.6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.colorReset {
+  padding: 5px 12px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+.colorReset:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.numberRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.numberLabel {
+  font-size: 12.5px;
+  opacity: 0.85;
+}
+
+.numberRow input {
+  width: 90px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.28);
+  color: inherit;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.strengthRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.strengthButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.strengthButtons button {
+  padding: 6px 14px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.strengthButtons button[data-active='true'] {
+  border-color: rgba(76, 120, 245, 0.7);
+  background: rgba(76, 120, 245, 0.2);
+}
+
+.uploadRow {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 0;
+}
+
+.uploadLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+  margin-bottom: 6px;
+}
+
+.uploadState {
+  opacity: 0.6;
+  font-size: 11.5px;
+}
+
+.uploadButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.uploadButtons button {
+  padding: 5px 12px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+.uploadButtons button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.saved {
+  text-align: center;
+  font-size: 12.5px;
+  color: #7ee0a0;
+}
+
+.exitButtonBig {
+  width: 100%;
+  padding: 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(226, 95, 95, 0.4);
+  background: rgba(226, 95, 95, 0.08);
+  color: #f2b8b8;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+
+.exitButtonBig:hover {
+  background: rgba(226, 95, 95, 0.16);
+}

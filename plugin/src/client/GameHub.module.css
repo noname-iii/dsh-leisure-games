@@ -1,0 +1,199 @@
+.root {
+  --leisure-accent: #4c78f5;
+  --leisure-entry-text: #e6e8f2;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #0d101c;
+  color: #e6e8f2;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  flex: none;
+}
+
+.topLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.backButton,
+.closeButton,
+.settingsButton,
+.exitHomeButton {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.backButton:hover,
+.settingsButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.closeButton,
+.exitHomeButton {
+  border-color: rgba(226, 95, 95, 0.4);
+  color: #f2b8b8;
+}
+
+.closeButton:hover,
+.exitHomeButton:hover {
+  background: rgba(226, 95, 95, 0.14);
+}
+
+.timeChip {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  font-variant-numeric: tabular-nums;
+}
+
+.timeChip[data-low='true'] {
+  border-color: rgba(240, 178, 66, 0.55);
+  color: #f0b242;
+}
+
+.body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  overflow: auto;
+}
+
+.homeTitle {
+  font-size: 26px;
+  margin: 0;
+  background: linear-gradient(90deg, var(--leisure-accent), color-mix(in srgb, var(--leisure-accent) 55%, #ffffff));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.restBanner {
+  border: 1px solid rgba(240, 178, 66, 0.5);
+  background: rgba(240, 178, 66, 0.1);
+  border-radius: 12px;
+  padding: 18px 26px;
+  text-align: center;
+}
+
+.restTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f0b242;
+}
+
+.restCountdown {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+.playtimeLine {
+  font-size: 13px;
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabs {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab {
+  width: 240px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--leisure-entry-text);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.tab:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--leisure-accent) 75%, white);
+  background: color-mix(in srgb, var(--leisure-accent) 12%, transparent);
+}
+
+.tab:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tabTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--leisure-entry-text);
+}
+
+.tabDesc {
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 1.5;
+  color: var(--leisure-entry-text);
+}
+
+.tabStart {
+  margin-top: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--leisure-entry-text);
+  opacity: 0.9;
+}
+
+.homeFooter {
+  display: flex;
+  gap: 12px;
+}

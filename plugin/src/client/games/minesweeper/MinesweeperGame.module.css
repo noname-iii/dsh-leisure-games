@@ -1,0 +1,147 @@
+.root {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.28);
+  font-variant-numeric: tabular-nums;
+}
+
+.counterIcon {
+  font-size: 13px;
+}
+
+.status {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status[data-status='won'] {
+  color: #7ee0a0;
+}
+
+.status[data-status='lost'] {
+  color: #ef6a6a;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.miniButton {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.miniButton:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.boardArea {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  --rows: 20;
+  --cols: 30;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  width: min(96vw, 92%);
+  height: min(64vh, 92%);
+  aspect-ratio: var(--cols) / var(--rows);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #171b28;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  font-size: clamp(10px, 1.2vw, 15px);
+  font-weight: 700;
+  font-family: inherit;
+  color: inherit;
+  user-select: none;
+  min-width: 0;
+  min-height: 0;
+}
+
+.cell:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.cell[data-revealed='true'] {
+  background: rgba(0, 0, 0, 0.22);
+  cursor: default;
+}
+
+.cell[data-flagged='true'] {
+  color: #ef5350;
+}
+
+.cell[data-boom='true'] {
+  background: rgba(226, 84, 74, 0.55);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  opacity: 0.8;
+  flex: none;
+}
+
+.wonText {
+  color: #7ee0a0;
+  font-weight: 700;
+}
+
+.lostText {
+  color: #ef6a6a;
+}
+
+.timeText {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
