@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Security hardening for the leisure-games client plugin.
  *
  * The plugin persists user-uploaded media (background images / music) and
@@ -6,7 +6,7 @@
  * plugin on the same origin, so its contents must be treated as untrusted
  * input: a crafted payload must never be able to
  *   - inject CSS through the `url(...)` interpolation used for backgrounds,
- *   - load unexpected URL schemes (network resources, `javascript:`, 鈥?,
+ *   - load unexpected URL schemes (network resources, `javascript:`, …),
  *   - or force unbounded allocations (huge boards / arrays) that freeze the
  *     page.
  *
@@ -16,7 +16,7 @@
 import type { LeisureState } from './hub-store.ts'
 import type { SnakeSnapshot } from './games/snake/engine.ts'
 import type { GomokuSnapshot } from './games/gomoku/engine.ts'
-import type { TetrisSnapshot, PieceRef } from './games/tetris/engine.ts'
+import type { TetrisSnapshot, PieceRef, PieceName } from './games/tetris/engine.ts'
 import type { MinesweeperSnapshot } from './games/minesweeper/engine.ts'
 
 /** Hard cap on the raw persisted JSON (bytes) before we refuse to parse it. */
@@ -71,10 +71,6 @@ function bool(value: unknown, fallback: boolean): boolean {
 function epochOrNull(value: unknown): number | null {
   if (value === null || value === undefined) return null
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null
-}
-
-function shortString(value: unknown, max: number): string {
-  return typeof value === 'string' ? value.slice(0, max) : ''
 }
 
 function oneOf<T>(value: unknown, set: readonly T[], fallback: T): T {
@@ -153,10 +149,16 @@ function sanitizeGomokuProgress(value: unknown): GomokuSnapshot | null {
   }
 }
 
+const PIECE_NAMES = ['I', 'O', 'T', 'S', 'Z', 'J', 'L', 'U', 'P'] as const
+
+function pieceName(value: unknown): PieceName {
+  return oneOf(value, PIECE_NAMES, 'I')
+}
+
 function pieceRef(value: unknown): PieceRef | null {
   if (value === null || value === undefined) return null
   const o = typeof value === 'object' ? value as Record<string, unknown> : {}
-  return { name: shortString(o.name, 16) || 'I', rotation: num(o.rotation, 0, 16, 0) }
+  return { name: pieceName(o.name), rotation: num(o.rotation, 0, 16, 0) }
 }
 
 function sanitizeTetrisProgress(value: unknown): TetrisSnapshot | null {
@@ -189,7 +191,7 @@ function sanitizeTetrisProgress(value: unknown): TetrisSnapshot | null {
     hold: pieceRef(o.hold),
     canHold: bool(o.canHold, true),
     queue: Array.isArray(o.queue) ? o.queue.slice(0, 64).map(pieceRef).filter((p): p is PieceRef => p !== null) : [],
-    bag: Array.isArray(o.bag) ? o.bag.slice(0, 64).map(n => shortString(n, 16)) : [],
+    bag: Array.isArray(o.bag) ? o.bag.slice(0, 64).map(pieceName) : [],
     current: pieceRef(o.current),
     curX: num(o.curX, 0, cols, 0),
     curY: num(o.curY, -rows, rows, 0),
