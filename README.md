@@ -1,5 +1,7 @@
 # DSH-Leisure-Games
 
+[![dsh.so security](https://www.dsh.so/badges/dsh-leisure-games.svg)](https://www.dsh.so/artifact/dsh-leisure-games/)
+
 > 本目录即最终交付目录：`D:\AI应用和代码\应用\dsh-leisure-games`。
 > 插件本体同时安装在 DSH 仓库 `packages/client/ui-leisure-games`（`plugin/`
 > 下为与之一致的源码副本），并已注册进本机 dsh web（2026-08-17 重启后在线）。
