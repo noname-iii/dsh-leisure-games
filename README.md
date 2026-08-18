@@ -2,10 +2,10 @@
 
 [![dsh.so security](https://www.dsh.so/badges/dsh-leisure-games.svg)](https://www.dsh.so/artifact/dsh-leisure-games/)
 
-> 本目录即最终交付目录：`D:\AI应用和代码\应用\dsh-leisure-games`。
-> 插件本体同时安装在 DSH 仓库 `packages/client/ui-leisure-games`（`plugin/`
-> 下为与之一致的源码副本），并已注册进本机 dsh web（2026-08-17 重启后在线）。
-> 源码发布在 GitHub：[noname-iii/dsh-leisure-games](https://github.com/noname-iii/dsh-leisure-games)。
+> 一个运行在 **DeepSeek Harness（`dsh`）网页客户端**里的休闲游戏插件。
+> 源码托管在 GitHub：[noname-iii/dsh-leisure-games](https://github.com/noname-iii/dsh-leisure-games)。
+> 本文件是**面向任何一台新机器的安装手册**（macOS / Windows / Linux），
+> 所有命令都可直接复制。
 
 DSH 网页客户端的休闲游戏插件：安装后在侧边栏「新会话」与「工作区」之间展示
 **DSH-Leisure-Games** 按钮，点开是四个选项卡：
@@ -30,12 +30,12 @@ DSH 网页客户端的休闲游戏插件：安装后在侧边栏「新会话」�
 
 ```
 dsh-leisure-games/
-├── README.md                本文件
+├── README.md                本文件（安装手册）
 ├── verify-e2e.ts            浏览器端到端验证脚本（四个游戏全流程 + 颜色自定义）
 ├── verify-notifications.ts  浏览器端 AI 批准/完成提醒验证脚本
 ├── repro-old-state.ts       旧版本持久化状态回归探针（验证迁移修复）
-├── plugin/                  插件包源码（与 deepseek-harness 中
-│   ├── package.json         packages/client/ui-leisure-games 相同）
+├── plugin/                  插件包源码（dsh bundle 本体）
+│   ├── package.json
 │   ├── tsconfig.json
 │   ├── tsdown.config.ts
 │   ├── src/
@@ -57,43 +57,53 @@ dsh-leisure-games/
 │   │           ├── gomoku/     引擎 + 组件 + 六大技能 + 三档 AI
 │   │           └── minesweeper/ 引擎 + 组件（经典扫雷）
 │   └── tests/               7 个 vitest 套件（64 个用例）
+├── LICENSE
+└── .gitignore
 ```
 
-## 安装（已在本机完成的步骤）
+---
 
-1. **源码位置**：插件包位于 DSH 仓库
-   `packages/client/ui-leisure-games`（本目录 `plugin/` 即其源码副本）。
+## Download
 
-2. **侧边栏挂载点**：`ui-sidebar` 包增加了一个 list 型插槽
-   `sidebar.action`，渲染在「新会话」按钮与工作区浏览区之间
-   （`packages/client/ui-sidebar/src/client/SidebarRoot.tsx` +
-   `contract/slots.ts` + `index.ts` 的 children 声明 + CSS）。
+Latest release: **v0.2.0** — published on GitHub Releases with an offline tarball
+asset `dsh-leisure-games-0.2.0.tgz`:
+https://github.com/noname-iii/dsh-leisure-games/releases/latest
 
-3. **打包**：
-   ```bash
-   pnpm exec tsc -b packages/client/ui-leisure-games
-   pnpm --filter @deepseek-ai/dsh-client-ui-leisure-games run bundle
-   ```
-   产出 `lib/index.js`（node half）、`lib/client.js`（浏览器 bundle，经
-   `dsh.client` 清单被加载）。
+```bash
+git clone https://github.com/noname-iii/dsh-leisure-games dsh-leisure-games
+cd dsh-leisure-games
+```
 
-4. **运行时解析链**：`dsh-web-app` 包的 dependencies 加入了
-   `@deepseek-ai/dsh-client-ui-leisure-games: workspace:^`，随后在仓库根与
-   profile 目录各执行一次 `pnpm install`，使运行中的 dsh 能从 profile 的
-   node_modules 解析该包。
+or install straight from GitHub / npm / the release tarball as a `dsh` bundle:
 
-5. **注册进 Web 面板**：在 `%USERPROFILE%\.dsh\profiles\web\cordis.patch.yml`
-   追加（该文件被运行中的 dsh web 热监视；但客户端插件的「新行」要到
-   dsh web **重启后**才进入浏览器加载图——client-modules 对未解析包名的
-   负面判定是永久缓存的）：
-   ```yaml
-   - insert:
-       - id: ui-leisure-games
-         name: '@deepseek-ai/dsh-client-ui-leisure-games'
-   ```
+```bash
+dsh plugin --profile web add github:noname-iii/dsh-leisure-games
+dsh plugin --profile web add dsh-leisure-games                    # npm package
+dsh plugin --profile web add ./dsh-leisure-games-0.2.0.tgz       # offline (release asset)
+```
 
-6. **重启 dsh web 并刷新网页**后，侧边栏「新会话」下方、「工作区」上方出现
-   按钮（本机已于 2026-08-17 重启完成，插件已在线，四个游戏全部验证通过）。
+The repository ships prebuilt `lib/` artifacts — no dependencies or TypeScript
+needed to use it. Cloning/downloading to any directory works as-is.
+
+## Install (DeepSeek Harness)
+
+Recommended: install as a bundle, then start. Replace `<plugin-dir>` with the
+path to this plugin (after `cd dsh-leisure-games` you can just use `.`):
+
+```bash
+dsh plugin --profile web add "<plugin-dir>"   # e.g. dsh plugin --profile web add .
+dsh web
+```
+
+Or mount without installing: edit `examples/web-overlay.yml`, replace
+`<插件绝对路径>` with the absolute path to this plugin (Windows requires the
+`file:///D:/...` form; macOS/Linux use a plain absolute path), then:
+
+```bash
+pnpm dsh web --patch "<plugin-dir>/examples/web-overlay.yml"
+```
+
+---
 
 ## 玩法说明
 
@@ -142,8 +152,10 @@ dsh-leisure-games/
 
 ## 测试
 
+> 测试需在 DSH 仓库内运行（因为测试依赖 DSH 的 vitest 配置与工作区依赖）。
+
 ```bash
-cd <deepseek-harness>
+cd deepseek-harness
 pnpm exec vitest run packages/client/ui-leisure-games
 ```
 
@@ -158,7 +170,7 @@ pnpm exec vitest run packages/client/ui-leisure-games
 面板交互/AI 批准与完成提醒卡片）。另有 `verify-e2e.ts` / `verify-notifications.ts`
 两个真实浏览器端到端脚本。
 
-## 验收证据（真实浏览器，本机 dsh web 127.0.0.1:3080）
+## 验收证据（真实浏览器，DSH web 127.0.0.1:3080）
 
 - 单元测试：**74/74 通过**（`pnpm exec vitest run packages/client/ui-leisure-games`）。
 - `verify-e2e.ts`：**33/33 通过** —— 侧边栏按钮位于「新会话」与「工作区」之间；
